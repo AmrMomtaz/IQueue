@@ -5,7 +5,7 @@ public class AQueue implements IQueue , IArrayBased
 	int CAPACITY;
 	int size,f,r;
 	Object stack [];
-	
+	//I used circular array and I kept tracking the size to know if the Queue is empty or full
 	AQueue (int capacity)
 	{
 		CAPACITY = capacity;
