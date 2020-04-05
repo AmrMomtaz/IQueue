@@ -37,5 +37,57 @@ class AQueue_Tests
 		assertEquals(0,queue.f);
 		assertEquals(0,queue.r);
 	}
+	@Test
+	void test2()
+	{
+		//OverFlow error test
+		AQueue queue = new AQueue(5);
+		queue.enqueue(1);
+		queue.enqueue(2);
+		queue.enqueue(3);
+		queue.enqueue(4);
+		assertEquals(4,queue.size());
+		queue.enqueue(5);
+		assertEquals(5,queue.size());
+		assertEquals(false,queue.isEmpty());
+		queue.dequeue();
+		queue.dequeue();
+		queue.enqueue(6);
+		queue.enqueue(7);
+		assertEquals(5,queue.size());
+		queue.dequeue();
+		queue.enqueue(8);
+		Exception IllegalArgumentException = assertThrows(IllegalArgumentException.class, () -> 
+	    {
+			queue.enqueue(9);
+		});
+	    String actualMessage = IllegalArgumentException.getMessage();
+	    String expectedMessage = "Queue OverFlow";
+	    assertTrue(actualMessage.contains(expectedMessage));
+	}
+	@Test
+	void test3()
+	{
+		//UnderFlow error test
+		AQueue queue = new AQueue (10);
+		queue.enqueue("Egypt");
+		queue.enqueue("France");
+		assertEquals(2,queue.size());
+		assertEquals("Egypt",queue.dequeue());
+		queue.enqueue("Germany");
+		queue.enqueue("Spain");
+		for (int i = 0 ; i < 3 ; i++)
+		{
+			queue.dequeue();
+		}
+		assertEquals(true,queue.isEmpty());
 
+		Exception IllegalArgumentException = assertThrows(IllegalArgumentException.class, () -> 
+	    {
+			queue.dequeue();
+		});
+	    String actualMessage = IllegalArgumentException.getMessage();
+	    String expectedMessage = "Queue UnderFlow";
+	    assertTrue(actualMessage.contains(expectedMessage));
+	}
 }

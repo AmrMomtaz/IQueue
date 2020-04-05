@@ -18,7 +18,7 @@ public class AQueue implements IQueue , IArrayBased
 	@Override
 	public void enqueue(Object item) 
 	{
-		if (size == CAPACITY)throw new IllegalArgumentException ("The stack is full");
+		if (size == CAPACITY)throw new IllegalArgumentException ("Queue OverFlow");
 		stack[r]=item;
 		size++;
 		r = (r+1)%CAPACITY;
@@ -27,7 +27,7 @@ public class AQueue implements IQueue , IArrayBased
 	@Override
 	public Object dequeue() 
 	{
-		if (isEmpty())throw new IllegalArgumentException ("The stack is empty");
+		if (isEmpty())throw new IllegalArgumentException ("Queue UnderFlow");
 		Object element = stack[f];
 		stack[f]=null;
 		f = (f+1)%CAPACITY;
@@ -46,5 +46,4 @@ public class AQueue implements IQueue , IArrayBased
 	{
 		return size;
 	}
-
 }
